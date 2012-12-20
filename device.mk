@@ -35,6 +35,9 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     charger
 
+# Enable Torch
+PRODUCT_PACKAGES += Torch
+
 # Live Wallpapers
 PRODUCT_PACKAGES += \
         LiveWallpapers \
