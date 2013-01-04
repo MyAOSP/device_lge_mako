@@ -93,4 +93,6 @@ TARGET_NO_RPC := true
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/mako
 
+TARGET_USE_PREBUILT_KERNEL := true
+
 -include vendor/lge/mako/BoardConfigVendor.mk
