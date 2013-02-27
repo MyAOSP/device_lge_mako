@@ -29,7 +29,7 @@ PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_PACKAGES := \
-	lights.msm8960
+	lights.mako
 
 PRODUCT_PACKAGES += \
     charger_res_images \
@@ -50,6 +50,13 @@ LOCAL_KERNEL := device/lge/mako/kernel
 PRODUCT_COPY_FILES := \
         $(LOCAL_KERNEL):kernel
 
+# Files needed for kernel
+PRODUCT_COPY_FILES += \
+        device/lge/mako/prebuilt/power.msm8960.so:system/lib/hw/power.msm8960.so \
+        device/lge/mako/prebuilt/cpufreq_limit.ko:system/lib/modules/cpufreq_limit.ko \
+        device/lge/mako/prebuilt/thermald:system/bin/thermald \
+        device/lge/mako/prebuilt/thermald.conf:system/etc/thermald.conf
+
 PRODUCT_COPY_FILES += \
 	device/lge/mako/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
 	device/lge/mako/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
@@ -59,8 +66,8 @@ PRODUCT_COPY_FILES += \
 	device/lge/mako/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3 \
 	device/lge/mako/audio_policy.conf:system/etc/audio_policy.conf
 
-PRODUCT_COPY_FILES += \
-	device/lge/mako/thermald-mako.conf:system/etc/thermald.conf
+#PRODUCT_COPY_FILES += \
+#	device/lge/mako/thermald-mako.conf:system/etc/thermald.conf
 
 PRODUCT_COPY_FILES += \
 	device/lge/mako/init.mako.rc:root/init.mako.rc \
@@ -112,12 +119,12 @@ PRODUCT_COPY_FILES += \
 
 # NFC packages
 PRODUCT_PACKAGES += \
-        libnfc-nci \
-        libnfc_nci_jni \
-        nfc_nci.mako \
-        NfcNci \
-        Tag \
-        com.android.nfc_extras
+    libnfc-nci \
+    libnfc_nci_jni \
+    nfc_nci.mako \
+    NfcNci \
+    Tag \
+    com.android.nfc_extras
 
 # NFCEE access control
 ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -189,8 +196,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	hci_qcomm_init
 
-PRODUCT_PACKAGES += \
-	power.msm8960
+#PRODUCT_PACKAGES += \
+#	power.msm8960
 
 PRODUCT_COPY_FILES += \
 	device/lge/mako/init.mako.bt.sh:system/etc/init.mako.bt.sh
@@ -242,10 +249,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
-	media.aac_51_output_enabled=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	debug.prerotation.disable=1
+    media.aac_51_output_enabled=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
         debug.egl.recordable.rgba8888=1
@@ -260,3 +264,6 @@ PRODUCT_COPY_FILES += \
 	system/extras/bugmailer/send_bug:system/bin/send_bug
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+
+# This is the mako-specific audio package
+#$(call inherit-product, frameworks/base/data/sounds/AudioPackage10.mk)
