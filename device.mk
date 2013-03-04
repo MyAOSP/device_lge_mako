@@ -45,9 +45,9 @@ PRODUCT_PACKAGES += \
         VisualizationWallpapers \
         librs_jni
 
-LOCAL_KERNEL := device/lge/mako/kernel
+#LOCAL_KERNEL := device/lge/mako/kernel
 
-PRODUCT_COPY_FILES := \
+#PRODUCT_COPY_FILES := \
         $(LOCAL_KERNEL):kernel
 
 # Files needed for kernel
